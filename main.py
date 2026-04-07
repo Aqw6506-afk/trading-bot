@@ -1,8 +1,6 @@
-from flask import Flask
-import threading
-import time
 
-app = Flask(__name__)
+import threading
+import tim
 
 def run_bot():
     while True:
