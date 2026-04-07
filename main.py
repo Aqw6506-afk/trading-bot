@@ -1,24 +1,23 @@
+from flask import Flask
+import threading
 import time
-import random
 
-def get_signal():
-    signals = ["LONG", "SHORT", "WAIT"]
-    return random.choice(signals)
+app = Flask(__name__)
 
 def run_bot():
-    print("交易機器人啟動中...")
     while True:
-        signal = get_signal()
-        print(f"當前訊號: {signal}")
-
-        if signal == "LONG":
-            print("做多進場")
-        elif signal == "SHORT":
-            print("做空進場")
-        else:
-            print("觀望中")
-
+        print("bot running...")
+        
+        # ✅ 這裡放你的交易程式
+        # 例如：
+        # trade()
+        
         time.sleep(10)
 
+@app.route("/")
+def home():
+    return "Bot is running!"
+
 if __name__ == "__main__":
-    run_bot()
+    threading.Thread(target=run_bot).start()
+    app.run(host="0.0.0.0", port=10000)
